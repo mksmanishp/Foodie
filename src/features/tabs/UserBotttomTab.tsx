@@ -5,13 +5,14 @@ import Delivery from '@features/delivery/Delivery';
 import Reorder from '@features/reorder/Reorder';
 import Dining from '@features/dining/Dining';
 import LiveScreen from '@features/live/LiveScreen';
+import CustomBar from './CustomBar';
 
 const UserBottomTab: React.FC = () => {
   const Tab = createBottomTabNavigator();
 
   return (
     <Tab.Navigator
-      //tabBar={props => <CustomTabBar {...props} />}
+      tabBar={props => <CustomBar {...props} />}
       screenOptions={{
         headerShown: false,
         tabBarHideOnKeyboard: true,

@@ -1,12 +1,10 @@
-import { View } from 'react-native';
 import React, { FC } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import SplashScreen from '@features/auth/SplashScreen';
-import LoginScreens from '@features/auth/LoginScreen';
 import LoginScreen from '@features/auth/LoginScreen';
 import { navigationRef } from '@utils/NavigationUtils';
-import UserBottomTab from '@features/tabs/UserBotttomTab';
+import AnimatedTabs from '@features/tabs/AnimatedTabs';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,7 +30,7 @@ const Navigation: FC = () => {
             animation: 'fade',
           }}
           name="UserBottomTab"
-          component={UserBottomTab}
+          component={AnimatedTabs}
         />
       </Stack.Navigator>
     </NavigationContainer>
