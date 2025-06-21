@@ -1,6 +1,6 @@
-import {createStyleSheet} from 'react-native-unistyles';
+import { createStyleSheet } from 'react-native-unistyles';
 
-export const filterStyles = createStyleSheet(({colors, device, border}) => ({
+export const filterStyles = createStyleSheet(({ colors, device, border }) => ({
   filterBar: {
     paddingHorizontal: 10,
     paddingBottom: 10,
@@ -13,7 +13,7 @@ export const filterStyles = createStyleSheet(({colors, device, border}) => ({
     justifyContent: 'center',
     gap: 5,
     padding: 5,
-    shadowOffset: {width: 1, height: 1},
+    shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 0.1,
     elevation: 5,
     borderRadius: 8,

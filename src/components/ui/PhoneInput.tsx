@@ -29,7 +29,7 @@ const PhoneInput: FC<PhoneInputProps> = ({
           name="caret-down-outline"
           color={Colors.lightText}
           size={18}
-        ></Icon>
+         />
       </Pressable>
       <View style={styles.phoneInputContainer}>
         <CustomText fontFamily="Okra-Bold">+91</CustomText>
