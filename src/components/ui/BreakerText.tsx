@@ -50,5 +50,6 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     marginHorizontal: 8,
+    borderRadius: 10,
   },
 });

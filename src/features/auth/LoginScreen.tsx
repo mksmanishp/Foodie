@@ -70,6 +70,15 @@ const LoginScreen: FC = () => {
             </CustomText>
           )}
         </TouchableOpacity>
+        <BreakerText text=" or " />
+        <View style={styles.footer}>
+          <CustomText>By continuing,you agree to our</CustomText>
+          <View style={styles.footerTextContainer}>
+            <CustomText style={styles.footerText}>Terms of Service</CustomText>
+            <CustomText style={styles.footerText}>Privacy Policy</CustomText>
+            <CustomText style={styles.footerText}>Content Policies</CustomText>
+          </View>
+        </View>
       </Animated.ScrollView>
     </View>
   );
