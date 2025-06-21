@@ -9,18 +9,38 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { useStyles } from 'react-native-unistyles';
 import { loginStyles } from '@unistyles/authStyles';
 import CustomText from '@components/global/CustomText';
 import BreakerText from '@components/ui/BreakerText';
 import PhoneInput from '@components/ui/PhoneInput';
 import { resetAndNavigate } from '@utils/NavigationUtils';
+import SocialLogin from '@components/ui/SocialLogin';
+import useKeyboardOffsetHeight from '@utils/useKeyboardOffsetHeight';
 
 const LoginScreen: FC = () => {
+  const animatedValue = useRef(new Animated.Value(0)).current;
+  const keyboardOffsetHeight = useKeyboardOffsetHeight();
   const { styles } = useStyles(loginStyles);
   const [phone, setPhone] = useState('');
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (keyboardOffsetHeight == 0) {
+      Animated.timing(animatedValue, {
+        toValue: 0,
+        duration: 500,
+        useNativeDriver: true,
+      }).start();
+    } else {
+      Animated.timing(animatedValue, {
+        toValue: -keyboardOffsetHeight * 0.25,
+        duration: 500,
+        useNativeDriver: true,
+      }).start();
+    }
+  }, [keyboardOffsetHeight]);
 
   const handleLogin = async () => {
     setLoading(true);
@@ -44,6 +64,7 @@ const LoginScreen: FC = () => {
         keyboardShouldPersistTaps="handled"
         keyboardDismissMode="on-drag"
         contentContainerStyle={styles.bottomContainer}
+        style={{ transform: [{ translateY: animatedValue }] }}
       >
         <CustomText fontFamily="Okra-Bold" variant="h2" style={styles.title}>
           India's #1 Food Delivery and Dining App
@@ -71,6 +92,7 @@ const LoginScreen: FC = () => {
           )}
         </TouchableOpacity>
         <BreakerText text=" or " />
+        <SocialLogin />
         <View style={styles.footer}>
           <CustomText>By continuing,you agree to our</CustomText>
           <View style={styles.footerTextContainer}>
