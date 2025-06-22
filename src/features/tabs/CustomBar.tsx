@@ -20,6 +20,7 @@ import {
   LiveTabIcon,
   ReorderTabIcon,
 } from './TabIcon';
+import { useAppSelector } from '@states/reduxHook';
 
 const CustomBar: FC<BottomTabBarProps> = props => {
   const { scrolly } = useSharedState();
@@ -27,7 +28,7 @@ const CustomBar: FC<BottomTabBarProps> = props => {
   const bttom = useSafeAreaInsets();
   const { styles } = useStyles(tabStyles);
   const isLiveTabFocused = state.routes[state.index]?.name === 'Live';
-  const isVegMode = true;
+  const isVegMode = useAppSelector(state => state.user.isVegMode);
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
