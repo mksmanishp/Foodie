@@ -78,6 +78,7 @@ const LoginScreen: FC = () => {
           onBlur={() => {}}
         />
         <TouchableOpacity
+          testID="Phone"
           style={styles.buttonContainer}
           disabled={loading}
           onPress={handleLogin}
