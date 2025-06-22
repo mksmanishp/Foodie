@@ -5,7 +5,7 @@ import { useStyles } from 'react-native-unistyles';
 import { homeStyles } from '@unistyles/homeStyles';
 import { useSharedState } from '@features/tabs/SharedContext';
 import Animated, {
-  Extrapolation,
+  Extrapolate,
   interpolate,
   useAnimatedStyle,
 } from 'react-native-reanimated';
@@ -30,10 +30,11 @@ const Delivery: FC = () => {
       scrollyGlobal.value,
       [0, 50],
       [0, -50],
-      Extrapolation.CLAMP,
+      Extrapolate.CLAMP,
     );
+
     return {
-      transform: [{ translateY: translateY }],
+      transform: [{ translateY }],
     };
   });
 

@@ -24,7 +24,7 @@ import SortingAndFilters from '@components/home/SortingAndFilters';
 const sectionData = [
   { title: 'Explore', data: [{}], renderItem: () => <ExploreList /> },
   {
-    title: 'Resturants',
+    title: 'Restaurants',
     data: [{}],
     renderItem: () => <ResturantList />,
   },
@@ -103,8 +103,7 @@ const MainList = () => {
   };
 
   const viewabilityConfig = {
-    itemVisiblePercentThreshold: 50, // Item is considered viewable when 50% is visible
-    minimumViewTime: 100, // Milliseconds item must be viewable before callback fires
+    viewAreaCoveragePercentThreshold: 80,
   };
 
   return (
@@ -112,12 +111,13 @@ const MainList = () => {
       <Animated.View style={[styles.backToTopButton, backToTopStyle]}>
         <BackToTopButton onPress={handleScrollToTop} />
       </Animated.View>
+
       <SectionList
-        sections={sectionData}
         overScrollMode="always"
         ref={sectionListRef}
         scrollEventThrottle={16}
         onScroll={handleScroll}
+        sections={sectionData}
         bounces={false}
         nestedScrollEnabled
         showsVerticalScrollIndicator={false}
@@ -147,5 +147,3 @@ const MainList = () => {
 };
 
 export default MainList;
-
-const styles = StyleSheet.create({});
