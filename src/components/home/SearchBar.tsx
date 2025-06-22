@@ -1,20 +1,27 @@
 import {
   Image,
+  Pressable,
   SafeAreaView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { useStyles } from 'react-native-unistyles';
 import { homeStyles } from '@unistyles/homeStyles';
 import { useSharedState } from '@features/tabs/SharedContext';
-import { interpolate, useAnimatedStyle } from 'react-native-reanimated';
+import Animated, {
+  interpolate,
+  useAnimatedStyle,
+} from 'react-native-reanimated';
 import Icon from '@components/global/Icon';
 import { Colors } from '@unistyles/Constants';
 import CustomText from '@components/global/CustomText';
 import RollingContent from 'react-native-rolling-bar';
+import { useAppSelector } from '@states/reduxHook';
+import { useDispatch } from 'react-redux';
+import { setVegMode } from '@states/reducers/userSlice';
 
 const searchItems: string[] = [
   'Seacrh "chai samosa" ',
@@ -26,7 +33,8 @@ const searchItems: string[] = [
 ];
 const SearchBar = () => {
   const { styles } = useStyles(homeStyles);
-  const isVegMode = true;
+  const dispatch = useDispatch();
+  const isVegMode = useAppSelector(state => state.user.isVegMode);
   const { scrollyGlobal } = useSharedState();
   const textColorAnimation = useAnimatedStyle(() => {
     const textColor = interpolate(scrollyGlobal.value, [0, 80], [255, 0]);
@@ -65,10 +73,29 @@ const SearchBar = () => {
           <Icon
             iconFamily="Ionicons"
             name="mic-outline"
-            color="#ff0000"
+            color={isVegMode ? 'green' : 'red'}
             size={20}
           />
         </TouchableOpacity>
+        <Pressable
+          style={styles.vegMode}
+          onPress={() => dispatch(setVegMode(!isVegMode))}
+        >
+          <Animated.Text style={[textColorAnimation, styles.animatedText]}>
+            VEG
+          </Animated.Text>
+          <Animated.Text style={[textColorAnimation, styles.animatedSubText]}>
+            MODE
+          </Animated.Text>
+          <Image
+            source={
+              isVegMode
+                ? require('@assets/icons/switch_on.png')
+                : require('@assets/icons/switch_off.png')
+            }
+            style={styles.switch}
+          />
+        </Pressable>
       </View>
     </>
   );

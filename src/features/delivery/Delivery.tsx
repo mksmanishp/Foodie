@@ -5,12 +5,13 @@ import { useStyles } from 'react-native-unistyles';
 import { homeStyles } from '@unistyles/homeStyles';
 import { useSharedState } from '@features/tabs/SharedContext';
 import Animated, {
-  Extrapolation,
+  Extrapolate,
   interpolate,
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import Graphics from '@components/home/Graphics';
 import HeaderSection from '@components/home/HeaderSection';
+import MainList from '@components/list/MainList';
 
 const Delivery: FC = () => {
   const insets = useSafeAreaInsets();
@@ -29,10 +30,11 @@ const Delivery: FC = () => {
       scrollyGlobal.value,
       [0, 50],
       [0, -50],
-      Extrapolation.CLAMP,
+      Extrapolate.CLAMP,
     );
+
     return {
-      transform: [{ translateY: translateY }],
+      transform: [{ translateY }],
     };
   });
 
@@ -55,7 +57,9 @@ const Delivery: FC = () => {
             <HeaderSection />
           </Animated.View>
         </Animated.View>
-        <Animated.View style={moveUpStyle}></Animated.View>
+        <Animated.View style={moveUpStyle}>
+          <MainList />
+        </Animated.View>
       </View>
     </View>
   );
