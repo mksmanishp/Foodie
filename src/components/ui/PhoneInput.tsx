@@ -25,11 +25,11 @@ const PhoneInput: FC<PhoneInputProps> = ({
       <Pressable style={styles.countryPickerContainer}>
         <CustomText variant="h2">🇮🇳</CustomText>
         <Icon
-          iconFamily="Ionicons"
-          name="caret-down-outline"
-          color={Colors.lightText}
-          size={18}
-         />
+          name="chevron-down"
+          color={'black'}
+          iconFamily="MaterialCommunityIcons"
+          size={32}
+        />
       </Pressable>
       <View style={styles.phoneInputContainer}>
         <CustomText fontFamily="Okra-Bold">+91</CustomText>

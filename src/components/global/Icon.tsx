@@ -1,6 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native';
 import React, { FC } from 'react';
-import Ionicons from '@react-native-vector-icons/ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
@@ -10,17 +9,18 @@ interface IconProps {
   name: string;
   iconFamily: 'Ionicons' | 'MaterialCommunityIcons' | 'MaterialIcons';
 }
-const Icon: FC<IconProps> = ({ color, size, name, iconFamily }) => {
+
+const Icon: FC<IconProps> = ({ color = 'black', size, name, iconFamily }) => {
   return (
     <>
       {iconFamily === 'Ionicons' && (
         <Ionicons name={name} size={size} color={color} />
       )}
       {iconFamily === 'MaterialCommunityIcons' && (
-        <MaterialCommunityIcons name={name} size={size} color={color} />
+        <MaterialCommunityIcons name={name as any} size={size} color={color} />
       )}
       {iconFamily === 'MaterialIcons' && (
-        <MaterialIcons name={name} size={size} color={color} />
+        <MaterialIcons name={name as any} size={size} color={color} />
       )}
     </>
   );

@@ -9,6 +9,7 @@ export const tabStyles = createStyleSheet(({ colors, fonts, device }) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingLeft: 15,
+    marginBottom: 8,
   },
   tabBarContainer: {
     width: '100%',
@@ -46,11 +47,12 @@ export const tabStyles = createStyleSheet(({ colors, fonts, device }) => ({
   },
   slidingIndicator: {
     position: 'absolute',
-    top: 0,
-    height: 3,
+    top: -20,
+    height: 5,
     borderBottomLeftRadius: 40,
     borderBottomRightRadius: 40,
-    width: '15%',
+    width: '18%',
+    //  marginLeft: 10,
   },
   groceryLogoContainer: {
     justifyContent: 'flex-end',

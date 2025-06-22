@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { FC } from 'react';
 import {
   BottomTabBarButtonProps,
@@ -27,6 +27,7 @@ const CustomBar: FC<BottomTabBarProps> = props => {
   const bttom = useSafeAreaInsets();
   const { styles } = useStyles(tabStyles);
   const isLiveTabFocused = state.routes[state.index]?.name === 'Live';
+  const isVegMode = true;
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
@@ -99,6 +100,20 @@ const CustomBar: FC<BottomTabBarProps> = props => {
               </ScalePress>
             );
           })}
+          <View style={styles.verticalLine} />
+          <Animated.View
+            style={[
+              styles.slidingIndicator,
+              indicatorStyle,
+              {
+                backgroundColor: isLiveTabFocused
+                  ? '#fff'
+                  : isVegMode
+                  ? Colors.active
+                  : Colors.primary,
+              },
+            ]}
+          />
         </View>
       </Animated.View>
     </>
